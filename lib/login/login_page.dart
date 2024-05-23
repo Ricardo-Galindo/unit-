@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unit_mais/constants.dart';
+import 'package:unit_mais/home/home_page.dart';
 import 'package:unit_mais/register/register_page.dart';
 
 import '../widgets/CustomButton.dart';
@@ -60,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                           CustomTextField(
                             onSubmitted: (value) {},
                             hintText: 'email',
+                            icon: Icons.mail,
                           )
                         ],
                       ),
@@ -79,12 +81,18 @@ class _LoginPageState extends State<LoginPage> {
                           CustomTextField(
                             onSubmitted: (value) {},
                             hintText: 'senha',
+                            icon: Icons.lock,
                           )
                         ],
                       ),
                     ),
                     CustomButton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
                       margin: 66,
                       text: 'Entrar',
                       textColor: Colors.white,

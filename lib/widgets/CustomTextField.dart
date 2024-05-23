@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:unit_mais/constants.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField({required this.hintText, required this.onSubmitted});
+  const CustomTextField(
+      {required this.hintText, required this.onSubmitted, required this.icon});
 
   final String hintText;
   final Function(String?) onSubmitted;
+  final IconData icon;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -25,6 +28,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: TextField(
         onSubmitted: widget.onSubmitted,
         decoration: InputDecoration(
+            suffixIcon: Icon(
+              widget.icon,
+              color: kPrimaryColor,
+            ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
               color: Color(0xFF989898),

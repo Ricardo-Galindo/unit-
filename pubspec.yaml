@@ -66,6 +66,7 @@ flutter:
           weight: 700
   assets:
     - assets/images/unit+.png
+    - assets/images/daaf.jpg
 
 
   # To add assets to your application, add an assets section, like this:

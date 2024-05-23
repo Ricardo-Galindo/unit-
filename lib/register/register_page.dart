@@ -5,7 +5,6 @@ import 'package:unit_mais/widgets/CustomButton.dart';
 import '../widgets/CustomTextField.dart';
 
 class RegisterPage extends StatefulWidget {
-
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -59,6 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         CustomTextField(
                           onSubmitted: (value) {},
                           hintText: 'nome',
+                          icon: Icons.edit,
                         )
                       ],
                     ),
@@ -78,6 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         CustomTextField(
                           onSubmitted: (value) {},
                           hintText: 'sobrenome',
+                          icon: Icons.edit,
                         )
                       ],
                     ),
@@ -97,6 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         CustomTextField(
                           onSubmitted: (value) {},
                           hintText: 'email',
+                          icon: Icons.mail,
                         )
                       ],
                     ),
@@ -116,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         CustomTextField(
                           onSubmitted: (value) {},
                           hintText: 'confirmar senha',
+                          icon: Icons.lock,
                         )
                       ],
                     ),
