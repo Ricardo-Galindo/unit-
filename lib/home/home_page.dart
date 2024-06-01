@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:unit_mais/local_details/local_details_page.dart';
 import 'package:unit_mais/login/login_page.dart';
@@ -31,6 +32,25 @@ class _HomePageState extends State<HomePage> {
       "description": "Lugar perfeito para socializar e matar a fome."
     }
   ];
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<void> _fetchData() async {
+    try {
+      QuerySnapshot querySnapshot = await _firestore.collection('Venue').get();
+      querySnapshot.docs.forEach((doc) {
+        print(doc.data());
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
