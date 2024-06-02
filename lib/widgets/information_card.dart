@@ -24,7 +24,7 @@ class _InformationCardState extends State<InformationCard> {
       onTap: widget.onTap,
       child: Container(
         margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-        height: 206,
+        height: 280,
         padding: EdgeInsets.only(left: 14, top: 16, right: 23, bottom: 32),
         decoration: BoxDecoration(
           color: kPrimaryColor,
@@ -35,51 +35,58 @@ class _InformationCardState extends State<InformationCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                  child: Container(
-                    child: Text(
-                      widget.title,
-                      style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Container(
+                        child: Text(
+                          widget.title,
+                          style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
                     ),
-                  ),
+                    Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
-                Icon(
-                  Icons.favorite,
-                  color: Colors.white,
+                Container(
+                  margin: EdgeInsets.only(top: 12),
+                  child: Text(
+                    widget.commentary,
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 10,
+                  ),
                 ),
               ],
             ),
             Flexible(
               child: Container(
-                margin: EdgeInsets.only(top: 12),
+                margin: EdgeInsets.only(top: 20),
                 child: Text(
-                  widget.commentary,
+                  widget.description,
                   style: TextStyle(
                       fontFamily: 'Roboto',
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                       color: Colors.white),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 10,
+                  maxLines: 4,
                 ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 8),
-              child: Text(
-                widget.description,
-                style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white),
               ),
             ),
           ],

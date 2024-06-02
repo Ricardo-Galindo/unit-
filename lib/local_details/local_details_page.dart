@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:unit_mais/Classes/Venue.dart';
 import 'package:unit_mais/constants.dart';
 import 'package:unit_mais/user_details/user_details_page.dart';
 import 'package:unit_mais/widgets/CustomAppBar.dart';
 
-class LocalDetailsPage extends StatelessWidget {
-  const LocalDetailsPage({super.key});
+class VenueDetailsPage extends StatelessWidget {
+  VenueDetailsPage({required this.venue});
+
+  final Venue venue;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,10 @@ class LocalDetailsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        child: Image.asset('assets/images/daaf.jpg'),
+                        child: Image.network(
+                          venue.image,
+                          scale: 1,
+                        ),
                       ),
                       Container(
                         width: double.infinity,
@@ -53,7 +59,7 @@ class LocalDetailsPage extends StatelessWidget {
                         height: 42,
                         color: kPrimaryColor,
                         child: Text(
-                          "DAAF - DEP. DE ASSUNTOS ACAD. E FIN",
+                          venue.name,
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 20,
@@ -65,7 +71,11 @@ class LocalDetailsPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  DetailsCard()
+                  DetailsCard(
+                    weekdayHours: venue.weekdayHours,
+                    weekendHours: venue.weekendHours,
+                    location: venue.location,
+                  )
                 ],
               ),
             ),
@@ -77,7 +87,14 @@ class LocalDetailsPage extends StatelessWidget {
 }
 
 class DetailsCard extends StatelessWidget {
-  const DetailsCard({super.key});
+  DetailsCard(
+      {required this.weekdayHours,
+      required this.weekendHours,
+      required this.location});
+
+  final String weekdayHours;
+  final String weekendHours;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +114,7 @@ class DetailsCard extends StatelessWidget {
           Flexible(
             child: Container(
               child: Text(
-                "Horario de funcionamento:\n  -segunda a sexta: 8h00 as 22h00\n  -sabádo: 8h00 as 12h00",
+                "Horario de funcionamento:\n  -segunda a sexta: $weekdayHours\n  -sabádo: $weekendHours",
                 style: TextStyle(
                     fontFamily: 'Roboto', fontSize: 18, color: Colors.white),
               ),
@@ -107,7 +124,7 @@ class DetailsCard extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(top: 12),
               child: Text(
-                "Localização: Dentro do prédio da reitoria. Primeira porta a esquerda.",
+                "Localização: $location.",
                 style: TextStyle(
                     fontFamily: 'Roboto', fontSize: 18, color: Colors.white),
               ),
