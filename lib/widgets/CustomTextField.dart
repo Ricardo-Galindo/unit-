@@ -6,12 +6,14 @@ class CustomTextField extends StatefulWidget {
       {required this.hintText,
       required this.onSaved,
       required this.icon,
-      required this.validate});
+      required this.validate,
+      required this.isPasswordField});
 
   final String hintText;
   final Function(String?) onSaved;
   final IconData icon;
   final String? Function(String?)? validate;
+  final bool isPasswordField;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -29,6 +31,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: TextFormField(
         onSaved: widget.onSaved,
         validator: widget.validate,
+        obscureText: widget.isPasswordField,
         decoration: InputDecoration(
           suffixIcon: Icon(
             widget.icon,

@@ -122,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: 'email',
                               validate: (value) => validateEmail(value),
                               icon: Icons.mail,
+                              isPasswordField: false,
                             )
                           ],
                         ),
@@ -147,6 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ? passwordError
                                   : null,
                               icon: Icons.lock,
+                              isPasswordField: true,
                             )
                           ],
                         ),

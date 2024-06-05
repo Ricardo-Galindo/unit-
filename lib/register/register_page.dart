@@ -146,6 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             validate: (value) =>
                                 validateString(value?.trim(), "nome"),
                             icon: Icons.edit,
+                            isPasswordField: false,
                           )
                         ],
                       ),
@@ -170,6 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             validate: (value) =>
                                 validateString(value?.trim(), "sobrenome"),
                             icon: Icons.edit,
+                            isPasswordField: false,
                           )
                         ],
                       ),
@@ -193,6 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintText: 'email',
                             validate: (value) => validateEmail(value?.trim()),
                             icon: Icons.mail,
+                            isPasswordField: false,
                           )
                         ],
                       ),
@@ -217,6 +220,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             validate: (_) =>
                                 passwordError.isNotEmpty ? passwordError : null,
                             icon: Icons.lock,
+                            isPasswordField: true,
                           )
                         ],
                       ),
