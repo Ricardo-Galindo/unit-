@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:unit_mais/constants.dart';
 import 'package:unit_mais/local_details/local_details_page.dart';
 import 'package:unit_mais/login/login_page.dart';
+import 'package:unit_mais/user_details/user_details_page.dart';
 import 'package:unit_mais/widgets/CustomAppBar.dart';
 import 'package:unit_mais/widgets/circular_loading.dart';
 import 'package:unit_mais/widgets/information_card.dart';
@@ -17,6 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final List<Venue> venues = [];
   String searchedVenue = "";
 
@@ -46,7 +50,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.black,
         width: double.infinity,
         child: venues.isEmpty
-            ? CircularLoading()
+            ? CircularLoading(
+                color: kPrimaryColor,
+              )
             : Center(
                 child: Container(
                   color: Colors.white,
@@ -57,12 +63,20 @@ class _HomePageState extends State<HomePage> {
                       CustomAppBar(
                         shouldShow: false,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
-                          );
+                          _auth.currentUser?.uid != null
+                              ? Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const UserDetailsPage(),
+                                  ),
+                                )
+                              : Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginPage(),
+                                  ),
+                                );
                         },
                       ),
                       Container(
