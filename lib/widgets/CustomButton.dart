@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:unit_mais/widgets/circular_loading.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton(
@@ -6,13 +7,15 @@ class CustomButton extends StatefulWidget {
       required this.onTap,
       required this.text,
       required this.textColor,
-      required this.buttonColor});
+      required this.buttonColor,
+      required this.isLoading});
 
   final double margin;
   final void Function()? onTap;
   final String text;
   final Color textColor;
   final Color buttonColor;
+  final bool isLoading;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -33,14 +36,16 @@ class _CustomButtonState extends State<CustomButton> {
           ),
         ),
         child: Center(
-          child: Text(
-            widget.text,
-            style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 18,
-                color: widget.textColor,
-                fontWeight: FontWeight.bold),
-          ),
+          child: widget.isLoading
+              ? CircularLoading(color: Colors.white)
+              : Text(
+                  widget.text,
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 18,
+                      color: widget.textColor,
+                      fontWeight: FontWeight.bold),
+                ),
         ),
       ),
     );

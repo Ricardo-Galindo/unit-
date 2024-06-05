@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 class CircularLoading extends StatelessWidget {
+  CircularLoading({required this.color});
+
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +12,7 @@ class CircularLoading extends StatelessWidget {
       height: 20,
       child: CircularProgressIndicator(
         strokeWidth: 2.0,
-        valueColor: AlwaysStoppedAnimation(kPrimaryColor),
+        valueColor: AlwaysStoppedAnimation(color),
       ),
     );
   }

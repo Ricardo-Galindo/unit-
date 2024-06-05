@@ -1,12 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:unit_mais/Classes/Venue.dart';
 import 'package:unit_mais/constants.dart';
+import 'package:unit_mais/login/login_page.dart';
 import 'package:unit_mais/user_details/user_details_page.dart';
 import 'package:unit_mais/widgets/CustomAppBar.dart';
 
 class VenueDetailsPage extends StatelessWidget {
   VenueDetailsPage({required this.venue});
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final Venue venue;
 
   @override
@@ -26,12 +28,19 @@ class VenueDetailsPage extends StatelessWidget {
                   CustomAppBar(
                       shouldShow: true,
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UserDetailsPage(),
-                          ),
-                        );
+                        _auth.currentUser?.uid != null
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const UserDetailsPage(),
+                                ),
+                              )
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginPage(),
+                                ),
+                              );
                       }),
                   Column(
                     children: [
